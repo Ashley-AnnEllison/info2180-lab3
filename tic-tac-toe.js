@@ -62,20 +62,20 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     //Checks for winner
     function checkCombo() {
-        let roundWon;
-        for(let i =0; i < 6; i++) {
+        let won;
+        for(let i =0; i < winner.length; i++) {
             const win = winner[i];
-            let x = xo[win[0]];
-            let o = xo[win[1]];
-            let y = xo[win[2]];
-            if(x === o || o === y) {
-                roundWon = true;
+            let firstCombo = xo[win[0]];
+            let secondCombo = xo[win[1]];
+            let thirdCombo = xo[win[2]];
+            if(firstCombo === secondCombo || secondCombo === thirdCombo) {
+                won = true;
             } else {
-                roundWon = false;
+                won = false;
             }
         }
 
-        if(roundWon) {
+        if(won) {
             alert(displayStatus.innerHTML = winnerStatus())
         }
     }
@@ -85,12 +85,10 @@ document.addEventListener('DOMContentLoaded', () =>{
         document.querySelector('#btn').addEventListener('click', function() {
             currentPlayer = "X";
             xo = ["", "", "", "", "", "", "", "", ""];
-            displayStatus.innerHTML = playerStatus();
             document.querySelectorAll('.square').forEach(function(square) {
                 square.innerHTML = "";
             });
         });
-        restartGame();
     }
 
 });
